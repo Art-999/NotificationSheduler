@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 public class NotificationJobService extends JobService {
+
     @Override
     public boolean onStartJob(JobParameters params) {
 
@@ -17,6 +18,7 @@ public class NotificationJobService extends JobService {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(this)
                 .setContentTitle("Job Service")
                 .setContentText("Your job is running")
+                .setContentIntent(contentPendingIntent)
                 .setSmallIcon(R.drawable.pets)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -28,6 +30,6 @@ public class NotificationJobService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        return false;
+        return true;
     }
 }
